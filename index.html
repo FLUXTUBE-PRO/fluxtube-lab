@@ -253,35 +253,37 @@
         ul { margin: 0; color: #ccc; line-height: 1.6; font-size: 12px; padding-left: 20px; }
         li { margin-bottom: 5px; }
 
-        /* VIDU Creator Mark - LAB Style */
+        /* VIDU Creator Mark - Imported PAB Style */
         .creator-mark {
             position: absolute;
             bottom: 15px;
             right: 35px; /* Shifted left for spacing */
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, var(--accent), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--cyan);
             z-index: 10;
-            animation: textBreath 2s infinite alternate;
+            text-transform: uppercase;
+            overflow: hidden;
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            animation: typingScan 4s steps(40, end) infinite, blinkCursor 0.5s step-end infinite alternate;
             -webkit-app-region: no-drag;
             pointer-events: none;
         }
         .creator-mark::before {
-            content: '</ ';
-            -webkit-text-fill-color: var(--text-muted);
-        }
-        .creator-mark::after {
-            content: ' >';
-            -webkit-text-fill-color: var(--text-muted);
+            content: 'SYS.DEV: ';
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        @keyframes textBreath {
-            0% { filter: drop-shadow(0px 0px 2px rgba(231,76,60,0.4)); }
-            100% { filter: drop-shadow(0px 0px 10px rgba(241,196,15,0.8)); }
+        @keyframes typingScan {
+            0%, 20% { width: 0; filter: hue-rotate(0deg); }
+            40%, 80% { width: 140px; filter: hue-rotate(90deg); text-shadow: 0 0 10px var(--accent); }
+            100% { width: 0; filter: hue-rotate(0deg); }
+        }
+        @keyframes blinkCursor {
+            50% { border-color: transparent; }
         }
     </style>
 </head>
