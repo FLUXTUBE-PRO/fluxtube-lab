@@ -94,30 +94,6 @@
             100% { transform: translateY(-800px) rotate(360deg); opacity: 0; border-radius: 50%; }
         }
 
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            cursor: pointer;
-            -webkit-app-region: no-drag;
-            transition: all 0.2s;
-            z-index: 10;
-        }
-
-        .close-btn:hover {
-            background: rgba(231, 76, 60, 0.8);
-            color: #fff;
-        }
-
         .glow-bg {
             position: absolute;
             width: 400px;
@@ -249,7 +225,7 @@
         .creator-mark {
             position: absolute;
             bottom: 15px;
-            right: 20px;
+            right: 35px; /* Shifted left for spacing */
             font-size: 12px;
             font-weight: 900;
             letter-spacing: 4px;
@@ -284,7 +260,6 @@
             <li></li><li></li><li></li><li></li><li></li><li></li>
         </ul>
 
-        <div class="close-btn" onclick="window.close()">✕</div>
         <div class="glow-bg"></div>
 
         <div class="content">
