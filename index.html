@@ -51,6 +51,12 @@
             background: transparent;
             color: var(--text-main);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+            /* --- ANTI-BLUR TYPOGRAPHY FIXES --- */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            
             display: flex;
             align-items: center;
             justify-content: center;
@@ -83,7 +89,7 @@
             transform-style: preserve-3d;
             transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
             transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
+            /* Removed will-change: transform; to prevent bitmap rasterization blurring */
         }
 
         /* Fast Smooth Embers Background for LAB */
@@ -107,6 +113,7 @@
             box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
             animation: riseUp 4s linear infinite;
             bottom: -50px;
+            backface-visibility: hidden;
         }
         .bg-animation li:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 3s; }
         .bg-animation li:nth-child(2) { left: 30%; width: 15px; height: 15px; animation-duration: 2.5s; animation-delay: 1s; }
@@ -159,6 +166,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transform: translateZ(var(--z-content));
             transform-style: preserve-3d;
+            backface-visibility: hidden; /* Fixes 3D blur */
         }
 
         h1 {
@@ -170,6 +178,7 @@
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             transform: translateZ(var(--z-text));
+            backface-visibility: hidden;
         }
 
         .variant-subtitle {
@@ -180,6 +189,7 @@
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(241, 196, 15, 0.4);
             transform: translateZ(var(--z-text));
+            backface-visibility: hidden;
         }
 
         .version-badge {
@@ -194,11 +204,13 @@
             border: 1px solid rgba(241, 196, 15, 0.3);
             box-shadow: 0 0 10px rgba(241, 196, 15, 0.1);
             transform: translateZ(var(--z-text));
+            backface-visibility: hidden;
         }
 
         p {
             transform: translateZ(var(--z-text));
             pointer-events: none;
+            backface-visibility: hidden;
         }
 
         .btn-download {
@@ -224,6 +236,7 @@
             cursor: pointer;
             transform: translateZ(var(--z-btn));
             transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
 
         .btn-download::before {
@@ -282,6 +295,7 @@
             overflow-y: auto;
             transform: translateZ(10px);
             transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
 
         .notes-container::-webkit-scrollbar { width: 5px; }
@@ -296,10 +310,11 @@
             border-bottom: 1px solid rgba(231,76,60,0.3);
             padding-bottom: 8px;
             transform: translateZ(5px);
+            backface-visibility: hidden;
         }
 
         ul { margin: 0; color: #ccc; line-height: 1.6; font-size: 12px; padding-left: 20px; }
-        li { margin-bottom: 5px; transform: translateZ(5px); }
+        li { margin-bottom: 5px; transform: translateZ(5px); backface-visibility: hidden; }
 
         /* VIDU Creator Mark */
         .creator-mark {
@@ -319,6 +334,7 @@
             -webkit-app-region: no-drag;
             pointer-events: none;
             transform: translateZ(var(--z-mark));
+            backface-visibility: hidden;
         }
         .creator-mark::before {
             content: 'SYS.DEV: ';
